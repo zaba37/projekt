@@ -5,13 +5,13 @@
  */
 package com.my.ejb;
 
-import javax.ejb.Singleton;
+import javax.ejb.Stateless;
 
 /**
  *
- * @author marcin
+ * @author zaba37
  */
-@Singleton
+@Stateless
 public class AuctionDbOperatorBean implements AuctionDbOperatorBeanRemote {
 
     // Add business logic below. (Right-click in editor and choose
