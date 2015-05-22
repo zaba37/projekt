@@ -11,6 +11,8 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import com.my.model.Customer;
+import java.util.List;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,5 +31,18 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
     public CustomerFacade() {
         super(Customer.class);
     }
+
+    @Override
+    public List<Customer> findByAllParameters(String firstName, String lastName, String email) {
+        TypedQuery<Customer> query = em.createNamedQuery("Customer.findByAllParameters", Customer.class);
+        query.setParameter("email", email);
+        query.setParameter("firstname", firstName);
+        query.setParameter("lastname", lastName);
+        List<Customer> result = query.getResultList();
+        em.close();
+        return result;
+    }
+    
+    
     
 }

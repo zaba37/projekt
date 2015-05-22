@@ -5,6 +5,13 @@
  */
 package com.my.ejb;
 
+import com.my.dao.AddressFacadeLocal;
+import com.my.dao.CustomerFacadeLocal;
+import com.my.ejb.facade.CustomerLoginFacade;
+import com.my.model.Address;
+import com.my.model.Customer;
+import com.my.model.CustomerLogin;
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 /**
@@ -14,6 +21,9 @@ import javax.ejb.Stateless;
 @Stateless
 public class AuctionDbOperatorBean implements AuctionDbOperatorBeanRemote {
 
+    
+
     // Add business logic below. (Right-click in editor and choose
-    // "Insert Code > Add Business Method")
+    // "Insert Code > Add Business Method
+    
 }

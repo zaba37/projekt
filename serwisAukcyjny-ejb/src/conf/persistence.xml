@@ -4,9 +4,6 @@
     <jta-data-source>jdbc/projektPool</jta-data-source>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="create"/>
-      <exclude-unlisted-classes>true</exclude-unlisted-classes>
-      <property name="eclipselink.canonicalmodel.subpackage" value="foobar"/>
     </properties>
   </persistence-unit>
 </persistence>

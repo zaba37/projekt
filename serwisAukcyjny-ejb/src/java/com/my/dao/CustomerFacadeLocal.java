@@ -27,7 +27,9 @@ public interface CustomerFacadeLocal {
     List<Customer> findAll();
 
     List<Customer> findRange(int[] range);
-
+    
+    List<Customer> findByAllParameters(String firstName, String lastName, String email);
+    
     int count();
     
 }
