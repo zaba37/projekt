@@ -5,9 +5,9 @@
  */
 package com.my.dao;
 
+import com.my.model.Customer;
 import java.util.List;
 import javax.ejb.Local;
-import com.my.model.Customer;
 
 /**
  *
@@ -27,9 +27,7 @@ public interface CustomerFacadeLocal {
     List<Customer> findAll();
 
     List<Customer> findRange(int[] range);
-    
-    List<Customer> findByAllParameters(String firstName, String lastName, String email);
-    
+
     int count();
     
 }

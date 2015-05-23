@@ -6,20 +6,17 @@
 package com.my.model;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,13 +24,15 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "CUSTOMER")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Customer.findAll", query = "SELECT c FROM Customer c"),
     @NamedQuery(name = "Customer.findById", query = "SELECT c FROM Customer c WHERE c.id = :id"),
     @NamedQuery(name = "Customer.findByFirstname", query = "SELECT c FROM Customer c WHERE c.firstname = :firstname"),
     @NamedQuery(name = "Customer.findByLastname", query = "SELECT c FROM Customer c WHERE c.lastname = :lastname"),
     @NamedQuery(name = "Customer.findByEmail", query = "SELECT c FROM Customer c WHERE c.email = :email"),
-    @NamedQuery(name = "Customer.findByAllParameters", query = "SELECT c FROM Customer c WHERE c.email = :email AND c.firstname = :firstname AND c.lastname = :lastname" )})
+    @NamedQuery(name = "Customer.findByLogin", query = "SELECT c FROM Customer c WHERE c.login = :login"),
+    @NamedQuery(name = "Customer.findByPassword", query = "SELECT c FROM Customer c WHERE c.password = :password")})
 public class Customer implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
@@ -51,14 +50,12 @@ public class Customer implements Serializable {
     @Size(max = 50)
     @Column(name = "EMAIL")
     private String email;
-    @OneToMany(mappedBy = "idCustomer")
-    private List<Address> addressList;
-    @OneToMany(mappedBy = "owner")
-    private List<Auction> auctionList;
-    @OneToMany(mappedBy = "idCustomer")
-    private List<Bid> bidList;
-    @OneToOne(fetch = FetchType.LAZY)
-    private CustomerLogin customerLogin;
+    @Size(max = 50)
+    @Column(name = "LOGIN")
+    private String login;
+    @Size(max = 50)
+    @Column(name = "PASSWORD")
+    private String password;
 
     public Customer() {
     }
@@ -99,41 +96,21 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
-
-
-    public List<Address> getAddressList() {
-        return addressList;
+    public String getLogin() {
+        return login;
     }
 
-    public void setAddressList(List<Address> addressList) {
-        this.addressList = addressList;
+    public void setLogin(String login) {
+        this.login = login;
     }
 
-    public List<Auction> getAuctionList() {
-        return auctionList;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAuctionList(List<Auction> auctionList) {
-        this.auctionList = auctionList;
+    public void setPassword(String password) {
+        this.password = password;
     }
-
-    public List<Bid> getBidList() {
-        return bidList;
-    }
-
-    public void setBidList(List<Bid> bidList) {
-        this.bidList = bidList;
-    }
-
-    public CustomerLogin getCustomerLogin() {
-        return customerLogin;
-    }
-
-    public void setCustomerLogin(CustomerLogin customerLogin) {
-        this.customerLogin = customerLogin;
-    }
-    
-    
 
     @Override
     public int hashCode() {
@@ -157,7 +134,7 @@ public class Customer implements Serializable {
 
     @Override
     public String toString() {
-        return "model.Customer[ id=" + id + " ]";
+        return "com.my.model.Customer[ id=" + id + " ]";
     }
     
 }
