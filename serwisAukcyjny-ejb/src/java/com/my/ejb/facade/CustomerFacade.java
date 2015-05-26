@@ -7,9 +7,11 @@ package com.my.ejb.facade;
 
 import com.my.dao.CustomerFacadeLocal;
 import com.my.model.Customer;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -29,4 +31,11 @@ public class CustomerFacade extends AbstractFacade<Customer> implements Customer
         super(Customer.class);
     }
     
+    public List<Customer> findByLogin(String login){
+        TypedQuery<Customer> query = em.createNamedQuery("Customer.findByLogin", Customer.class);
+        query.setParameter("login", login);
+        List<Customer> result = query.getResultList();
+        em.close(); //nie wiem czy tu trzeba to zamykac!!!!!!!!!!!!!
+        return result;
+    }
 }

@@ -27,6 +27,8 @@ public interface CustomerFacadeLocal {
     List<Customer> findAll();
 
     List<Customer> findRange(int[] range);
+    
+    List<Customer> findByLogin(String login);
 
     int count();
     
